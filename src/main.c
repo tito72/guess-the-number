@@ -8,9 +8,9 @@
 #define MAX_INPUT_LENGTH 11U
 #define MAX_SECRET_LENGTH 4U  // Maximum number of digits in UPPER_LIMIT
 
-void numberToString(unsigned int number, char* str)
+void numberToString(unsigned int number, char* str, size_t size)
 {
-    (void)sprintf(str, "%u", number);
+    (void)snprintf(str, size, "%u", number);
 }
 
 int main(void)
@@ -68,7 +68,7 @@ int main(void)
     if(attempt_count == MAX_ATTEMPTS)
     {
         (void)puts("Sorry, you didn't guess the number in 10 attempts. The number was:");
-        numberToString(secret_number, secret_str);
+        numberToString(secret_number, secret_str, sizeof(secret_str));
         (void)puts(secret_str);
     }
 
